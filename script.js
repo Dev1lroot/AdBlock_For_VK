@@ -4,7 +4,8 @@
 // @version      2.0
 // @description  Никаких займерботов
 // @author       Dev1lroot
-// @grant        https://vk.com/*
+// @grant        *
+// @include			 https://vk.com/*
 // @require      http://code.jquery.com/jquery-3.4.1.min.js
 // ==/UserScript==
 
@@ -37,6 +38,7 @@
              var hidden = $(this).find(".wall_text").html();
              $(this).find(".wall_text").html(`
 								<h1 style="color:red;">Обнаружено говно!</h1>
+								<p>Причина: ${bullshit}</p>
 								<button class="flat_button button_wide secondary" onclick="toggleBullshit(this)">Показать / Скрыть</button>
 								<div class="content_hidden" style="display:none">${hidden}</div>
 						 `);
@@ -47,7 +49,7 @@
   }
   $(document).ready(function(){
     console.log("скрипт запущен");
-    var ads = ["займи","купи","занять","источнике","заказ","закажи","Бот ПРОБИВЩИК"]; //Сюда пишем популярные триггеры
+    var ads = ["займи","купи","занять","источнике","заказ","закажи","Бот ПРОБИВЩИК","Шпион Бот","skillbox.ru"]; //Сюда пишем популярные триггеры
     startAnalysis(ads);
   })
 })();
