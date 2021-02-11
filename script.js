@@ -5,7 +5,7 @@
 // @description  Никаких займерботов
 // @author       Dev1lroot
 // @grant        *
-// @include			 https://vk.com/*
+// @include       https://vk.com/*
 // @require      http://code.jquery.com/jquery-3.4.1.min.js
 // ==/UserScript==
 
@@ -15,12 +15,12 @@
   {
     $("body").html($("body").html()+`<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>`) //Подключаем жукавери к ВК
     $("body").html($("body").html()+`
-		<script>
-		function toggleBullshit(elem)
-  	{
-    	$(elem).parent('.wall_text').find('.content_hidden').toggle()
-  	}
-		</script>`);
+    <script>
+    function toggleBullshit(elem)
+    {
+      $(elem).parent('.wall_text').find('.content_hidden').toggle()
+    }
+    </script>`);
     console.log("фиксация ивента прокрутки");
     document.addEventListener("scroll", function(event){ //Жукавери листенер не везде работает поэтому ванильный
       console.log("вы листаете, мы сканируем");
@@ -32,24 +32,24 @@
           {
              break;
           }
-        	if(stringbeforereplies.includes(bullshit))
+          if(stringbeforereplies.toLowerCase().includes(bullshit.toLowerCase()))
           {
-          	 console.log("говно обнаружено");
+             console.log("говно обнаружено");
              var hidden = $(this).find(".wall_text").html();
              $(this).find(".wall_text").html(`
-								<h1 style="color:red;">Обнаружено говно!</h1>
-								<p>Причина: ${bullshit}</p>
-								<button class="flat_button button_wide secondary" onclick="toggleBullshit(this)">Показать / Скрыть</button>
-								<div class="content_hidden" style="display:none">${hidden}</div>
-						 `);
+                <h1 style="color:red;">Обнаружено говно!</h1>
+                <p>Причина: ${bullshit}</p>
+                <button class="flat_button button_wide secondary" onclick="toggleBullshit(this)">Показать / Скрыть</button>
+                <div class="content_hidden" style="display:none">${hidden}</div>
+             `);
           }
-      	}
+        }
       });
     });
   }
   $(document).ready(function(){
     console.log("скрипт запущен");
-    var ads = ["займи","купи","занять","источнике","заказ","закажи","Бот ПРОБИВЩИК","Шпион Бот","skillbox.ru"]; //Сюда пишем популярные триггеры
+    var ads = ["займи","купи","занять","источнике","заказ","закажи","Бот ПРОБИВЩИК","Шпион Бот","skillbox.ru","SkillFactory"]; //Сюда пишем популярные триггеры
     startAnalysis(ads);
   })
 })();
