@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         AdBlock for VK
-// @namespace    https://dev1lroot.pythnoanywhere.com/
+// @namespace    https://dev1lroot.pythonanywhere.com/
 // @version      2.0
 // @description  Никаких займерботов
 // @author       Dev1lroot
 // @grant        *
-// @include       https://vk.com/*
+// @include      https://vk.com/*
 // @require      http://code.jquery.com/jquery-3.4.1.min.js
 // ==/UserScript==
 
