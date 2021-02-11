@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         AdBlock for VK
-// @namespace    https://dev1lroot.pythonanywhere.com/
-// @version      1.0
+// @namespace    https://dev1lroot.pythnoanywhere.com/
+// @version      2.0
 // @description  Никаких займерботов
 // @author       Dev1lroot
 // @grant        https://vk.com/*
@@ -12,16 +12,34 @@
 {
   function startAnalysis(ads)
   {
+    $("body").html($("body").html()+`<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>`) //Подключаем жукавери к ВК
+    $("body").html($("body").html()+`
+		<script>
+		function toggleBullshit(elem)
+  	{
+    	$(elem).parent('.wall_text').find('.content_hidden').toggle()
+  	}
+		</script>`);
     console.log("фиксация ивента прокрутки");
     document.addEventListener("scroll", function(event){ //Жукавери листенер не везде работает поэтому ванильный
       console.log("вы листаете, мы сканируем");
       $("._post_content").each(function(index){
         for(var bullshit of ads)
         {
-        	if($(this).html().includes(bullshit))
+          var stringbeforereplies = $(this).html().split(`class="replies"`)[0]; //Шоб не триггерило комменты, по классу не взять он скриптами присваивается у них
+          if(stringbeforereplies.includes("Обнаружено говно!"))
+          {
+             break;
+          }
+        	if(stringbeforereplies.includes(bullshit))
           {
           	 console.log("говно обнаружено");
-             $(this).find(".wall_text").html(`<h1 style="color:red;">Обнаружено говно!</h1>`);
+             var hidden = $(this).find(".wall_text").html();
+             $(this).find(".wall_text").html(`
+								<h1 style="color:red;">Обнаружено говно!</h1>
+								<button class="flat_button button_wide secondary" onclick="toggleBullshit(this)">Показать / Скрыть</button>
+								<div class="content_hidden" style="display:none">${hidden}</div>
+						 `);
           }
       	}
       });
